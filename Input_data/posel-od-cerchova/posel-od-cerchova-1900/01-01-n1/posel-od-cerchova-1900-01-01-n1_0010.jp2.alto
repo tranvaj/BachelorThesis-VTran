@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<alto xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/standards/alto/ns-v2#">
+  <Description>
+    <MeasurementUnit>pixel</MeasurementUnit>
+    <sourceImageInformation>
+      <fileName>e05a927d-4711-478f-86e2-a23f0ad26f55</fileName>
+    </sourceImageInformation>
+    <OCRProcessing ID="IdOcr">
+      <ocrProcessingStep>
+        <processingDateTime>2023-06-20T22:20:43.192146+00:00</processingDateTime>
+        <processingSoftware>
+          <softwareCreator>Project PERO</softwareCreator>
+          <softwareName>czech_old_printed</softwareName>
+          <softwareVersion>2022-09-22</softwareVersion>
+        </processingSoftware>
+      </ocrProcessingStep>
+    </OCRProcessing>
+  </Description>
+  <Layout>
+    <Page ID="id_e05a927d-4711-478f-86e2-a23f0ad26f55" PHYSICAL_IMG_NR="1" HEIGHT="3052" WIDTH="2674">
+      <TopMargin HEIGHT="141" WIDTH="2674" VPOS="0" HPOS="0"/>
+      <LeftMargin HEIGHT="3052" WIDTH="88" VPOS="0" HPOS="0"/>
+      <RightMargin HEIGHT="3052" WIDTH="0" VPOS="0" HPOS="2674"/>
+      <BottomMargin HEIGHT="0" WIDTH="2674" VPOS="3052" HPOS="0"/>
+      <PrintSpace HEIGHT="2910" WIDTH="2586" VPOS="141" HPOS="88">
+        <TextBlock ID="block_r000" HEIGHT="290" WIDTH="80" VPOS="141" HPOS="88"/>
+        <TextBlock ID="block_r001" HEIGHT="221" WIDTH="322" VPOS="174" HPOS="350">
+          <TextLine BASELINE="344" VPOS="174" HPOS="350" HEIGHT="221" WIDTH="322">
+            <String CONTENT="1.44.9" HEIGHT="222" WIDTH="310" VPOS="174" HPOS="361" WC="0.66"/>
+          </TextLine>
+        </TextBlock>
+        <TextBlock ID="block_r002" HEIGHT="932" WIDTH="528" VPOS="2040" HPOS="2087"/>
+      </PrintSpace>
+    </Page>
+  </Layout>
+</alto>
