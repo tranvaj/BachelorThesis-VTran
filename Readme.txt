@@ -17,6 +17,7 @@ Text_thesis
 !IMPORTANT! (For Application_and_libraries)
 Modify config.cfg and set appropriate paths first, before executing any files.
 Make sure config.cfg is in your working directory / Copy the config.cfg inside "Application_and_libraries" to your working directory before running any files in "Application_and_libraries".
+By default, each paths in config.cfg are relative with the assumption that the structure of the files and folders is maintained.
 
 *Due to size of each checkpoint, only third epoch checkpoint is made available.
 
