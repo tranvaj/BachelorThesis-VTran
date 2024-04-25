@@ -1,14 +1,21 @@
-from datasets import load_dataset
 import os
-from pathlib import Path
+#from pathlib import Path
 import json
+import configparser
 
-PROMPT = "Vytvoř shrnutí následujícího textu ve stylu novináře. Počet vět <= 5:\n"
-SUMMARY_TOTAL = "summary-total.txt"
-SUMMARY_TOTAL_PROMPT = "summary-total-prompt.txt"
-DATASET_POC = "D:/FAVZCU/BP/summarization_bp/text/dataset_poc.json"
-DATASET_POC_P = "D:/FAVZCU/BP/summarization_bp/text/dataset_poc_p.json"
-TEXT_LOC = "D:/FAVZCU/BP/summarization_bp/text" #where posel od cerchova folders are located
+config = configparser.ConfigParser()
+config.read('config.cfg')
+
+TEXT_PREFIX = config['POC_Dataset']['TEXT_PREFIX']
+FOLDER_SUFFIX = config['POC_Dataset']['FOLDER_SUFFIX']
+SUMMARY_PREFIX = config['POC_Dataset']['SUMMARY_PREFIX']
+
+PROMPT = config['POC_Dataset']['PROMPT']
+SUMMARY_TOTAL = config['POC_Dataset']['SUMMARY_TOTAL']
+SUMMARY_TOTAL_PROMPT = config['POC_Dataset']['SUMMARY_TOTAL_PROMPT']
+DATASET_POC = config['POC_Dataset']['DATASET_POC']
+DATASET_POC_P = config['POC_Dataset']['DATASET_POC_P']
+TEXT_LOC = config['POC_Dataset']['TEXT_LOC']
 
 def process_folder(folder_path, text_prefix, summary_prefix, max_dirs=-1):
     dirs = os.listdir(folder_path)
@@ -87,6 +94,9 @@ def join_files(files):
             joined_text += file.read()
     return joined_text
 
+#summary_prefix: prefix of the summary files
+#text_prefix: prefix of the text files
+#folder_suffix: suffix of the folder names
 def create_dataset(dir_location, text_prefix="posel-od-cerchova-", folder_suffix="-ukazka", summary_prefix="summary-"):
     dataset = {}
     dataset2 = []
@@ -103,7 +113,7 @@ def create_dataset(dir_location, text_prefix="posel-od-cerchova-", folder_suffix
     return dataset, dataset2
 
 def main():
-    dataset, dataset2 = create_dataset(TEXT_LOC)
+    dataset, dataset2 = create_dataset(TEXT_LOC, TEXT_PREFIX, FOLDER_SUFFIX, SUMMARY_PREFIX)
     print(len(dataset2))
     dataset_json = json.dumps(dataset, ensure_ascii=False)
     dataset2_json = json.dumps(dataset2, ensure_ascii=False)

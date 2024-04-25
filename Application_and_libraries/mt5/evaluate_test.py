@@ -1,35 +1,24 @@
 from datasets import load_dataset
-import transformers
-import json
-import numpy as np
-
-from transformers import Seq2SeqTrainingArguments
-from transformers import AutoTokenizer
-from transformers import DataCollatorForSeq2Seq
-from transformers import EarlyStoppingCallback
-from nltk.tokenize import sent_tokenize
-from transformers import AutoModelForSeq2SeqLM
-from transformers import Seq2SeqTrainer
-from huggingface_hub import login
-import evaluate
-import nltk
 import rouge_raw
 from transformers import pipeline
+import configparser
 
-DATASET_DIR = "/storage/plzen1/home/nuva/sumeczech_dataset"
+config = configparser.ConfigParser()
+config.read('config.cfg')
+
+DATASET_DIR = config['SumeCzech']['dataset_dir'] #"/storage/plzen1/home/nuva/sumeczech_dataset"
+MODEL_CHECKPOINT = config['mT5']['summarizer'] #"tranv/mt5-base-finetuned-sumeczech"
+TEST_FILE = config['SumeCzech']['test'] #"/storage/plzen1/home/nuva/sumeczech_dataset/sumeczech-1.0-test.jsonl"
 
 max_input_length = 512
 max_target_length = 512
-print("Evaluating")
-
-model_checkpoint = "tranv/mt5-base-finetuned-sumeczech"
-
+print("Evaluating...")
 
 #data_files = {"test":"/storage/plzen1/home/nuva/sumeczech_dataset/sumeczech-1.0-test.jsonl"}
-data_files = {"test":f"{DATASET_DIR}/sumeczech-1.0-test.jsonl"}
+data_files = {"test":f"{DATASET_DIR}/{TEST_FILE}"}
 sc_set = load_dataset("json", data_files=data_files)
 
-summarizer_t5 = pipeline(task='summarization', model=model_checkpoint, device_map="auto")
+summarizer_t5 = pipeline(task='summarization', model=MODEL_CHECKPOINT, device_map="auto")
 articles_text  = sc_set["test"]["text"]
 abstract = sc_set["test"]["abstract"]
 

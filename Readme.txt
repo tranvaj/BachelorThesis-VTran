@@ -5,7 +5,9 @@ Results - contains evaluation results for M7B-POC (3rd checkpoint), mT5-SC and T
 Text_thesis - thesis in .pdf and its latex source code
 
 
-
+!IMPORTANT! (For Application_and_libraries)
+Modify config.cfg and set appropriate paths first, 
+then copy config.cfg inside "Application_and_libraries" to your working directory before running any files in "Application_and_libraries".
 
 *Due to size of each checkpoint, only third epoch checkpoint is made available.
 
