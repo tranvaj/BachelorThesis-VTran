@@ -1,4 +1,0 @@
-\contentsline {lstlisting}{\numberline {5.1}{\ignorespaces Text summarization inference example using pipeline}}{19}{lstlisting.5.1}%
-\contentsline {lstlisting}{\numberline {5.2}{\ignorespaces Showcase of the dataset format}}{21}{lstlisting.5.2}%
-\contentsline {lstlisting}{\numberline {5.3}{\ignorespaces Example of {\fontencoding {T1}\fontfamily {newtxtt}\fontseries {m}\fontshape {n}\fontsize {0.92\dimexpr 12pt\relax }{\baselineskip }\selectfont text} column in formatted SumeCzech dataset entry. The input and response were truncated and appended with {\fontencoding {T1}\fontfamily {newtxtt}\fontseries {m}\fontshape {n}\fontsize {0.92\dimexpr 12pt\relax }{\baselineskip }\selectfont ...} due to their long length}}{27}{lstlisting.5.3}%
-\contentsline {lstlisting}{\numberline {5.4}{\ignorespaces Summarization template for TST}}{29}{lstlisting.5.4}%
