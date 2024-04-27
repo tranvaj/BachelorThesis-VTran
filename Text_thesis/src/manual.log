@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.10)  27 APR 2024 18:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.10)  27 APR 2024 19:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6075,8 +6075,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.89 	\frontpages[tm]
-                      % or notm if the `trademark' declaration is not needed
+l.89 \frontpages[tm]
+                     % or notm if the `trademark' declaration is not needed
 [1
 
  <./img/kiv-black-en.pdf>]
@@ -6105,8 +6105,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.89 	\frontpages[tm]
-                      % or notm if the `trademark' declaration is not needed
+l.89 \frontpages[tm]
+                     % or notm if the `trademark' declaration is not needed
 <zadani.pdf, id=309, page=1, 597.51233pt x 845.0471pt>
 File: zadani.pdf Graphic file (type pdf)
 <use zadani.pdf, page 1>
@@ -6121,8 +6121,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.ii}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.89 	\frontpages[tm]
-                      % or notm if the `trademark' declaration is not needed
+l.89 \frontpages[tm]
+                     % or notm if the `trademark' declaration is not needed
 <zadani.pdf, id=335, page=2, 597.51233pt x 845.0471pt>
 File: zadani.pdf Graphic file (type pdf)
 <use zadani.pdf, page 2>
@@ -6146,15 +6146,15 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.89 	\frontpages[tm]
-                      % or notm if the `trademark' declaration is not needed
+l.89 \frontpages[tm]
+                     % or notm if the `trademark' declaration is not needed
 [1]
 pdfTeX warning (ext4): destination with the same identifier (name{page.ii}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.89 	\frontpages[tm]
-                      % or notm if the `trademark' declaration is not needed
+l.89 \frontpages[tm]
+                     % or notm if the `trademark' declaration is not needed
 [2] [3] (./manual.toc [1
 
 
@@ -6186,8 +6186,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.179 	\chapter
-               {Neural Networks} [1
+l.179 \chapter
+              {Neural Networks} [1
 
 ]
 Overfull \hbox (1.8pt too wide) detected at line 179
@@ -6199,8 +6199,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.201 		\item
-              \textbf{Pre-training:} The neural network is trained on a larg...
+l.201     \item
+                \textbf{Pre-training:} The neural network is trained on a la...
 [2
 
 ]
@@ -6847,7 +6847,7 @@ Package logreq Info: Writing requests to 'manual.run.xml'.
 Here is how much of TeX's memory you used:
  54718 strings out of 474104
  1088472 string characters out of 5747502
- 2033224 words of memory out of 5000000
+ 2052190 words of memory out of 5000000
  75731 multiletter control sequences out of 15000+600000
  1096249 words of font info for 399 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
