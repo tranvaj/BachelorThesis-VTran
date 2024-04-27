@@ -37,6 +37,15 @@ def show_samples(dataset, num_samples=3, seed=42):
     print(sample)
 
 def preprocess_function(examples):
+    """
+    Tokenizes the input examples for training the summarization model.
+
+    Args:
+        examples (dict): A dictionary containing the input examples with "text" and "abstract" keys.
+
+    Returns:
+        dict: A dictionary containing the preprocessed model inputs with "input_ids" and "labels" keys.
+    """
     model_inputs = tokenizer(
         examples["text"],
         max_length=max_input_length,

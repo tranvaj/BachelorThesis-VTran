@@ -18,6 +18,22 @@ DATASET_POC_P = config['POC_Dataset']['DATASET_POC_P']
 TEXT_LOC = config['POC_Dataset']['TEXT_LOC']
 
 def process_folder(folder_path, text_prefix, summary_prefix, max_dirs=-1):
+    """
+    Process a folder containing pages (text files) 
+    and generate an issue dictionary containing the pages and the summary total.
+
+    Args:
+        folder_path (str): The path to the folder containing the pages (text files).
+        text_prefix (str): The prefix used to identify the text files.
+        summary_prefix (str): The prefix used to identify the summary files.
+        max_dirs (int, optional): The maximum number of directories to process. Defaults to -1, which means all directories will be processed.
+
+    Returns:
+        tuple: A tuple containing two elements:
+            - data (dict): The issue as dictionary containing the pages and the summary total.
+            - data2 (list): A list containing just the pages.
+
+    """
     dirs = os.listdir(folder_path)
     data = {}
     data2 = []
@@ -73,7 +89,6 @@ def process_folder(folder_path, text_prefix, summary_prefix, max_dirs=-1):
             else:
                 with open(summary_total_path, 'r', encoding="utf-8") as file:
                     summary_total = file.read()
-
 
             #data.append({dir:{"pages": dataset_pair_list, "summary_total": summary_total}})
             data[dir] = {"pages": dataset_pair_list, "summary_total": summary_total}
