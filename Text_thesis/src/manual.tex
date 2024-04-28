@@ -240,28 +240,7 @@ There are various types of neural networks, each designed for specific tasks. So
 The success of NLP tasks, such as text summarization, heavily relies on the availability of high-quality datasets for training and evaluation. In this chapter, we explore and analyze the main datasets considered for fine-tuning summarization models. The primary objective of this thesis is the summarization of historical documents in the Czech language, a task that demands a specialized dataset to ensure the model's proficiency in handling of the target language.
 
 \section{SumeCzech} \label{sumeczech-section}
-SumeCzech~\cite{straka-etal-2018-sumeczech} is a dataset comprised of one million Czech news articles sourced from five Czech news sites: České Noviny\footnote{\url{https://ceskenoviny.cz}}, Deník\footnote{\url{https://denik.cz}}, iDNES\footnote{\url{https://idnes.cz}}, Lidovky\footnote{\url{https://lidovky.cz}}, Novinky.cz\footnote{\url{https://novinky.cz}}. The dataset is structured in the JSON Lines format, with each document represented as a JSON object containing fields such as URL, headline, abstract, text, subdomain, section, and publication date. Data cleanup involved filtering out irrelevant entries and removing unnecessary information such as advertisements and links. Language recognition was performed to retain only Czech documents. Further cleaning steps involved dropping documents with empty headlines, short abstracts, or very short full texts. Duplicates were also removed based on headline, abstract, or text similarity. The dataset can be used for different summarization setups, including headline generation and multi-sentence abstract generation. The authors also propose a language-agnostic variant of the ROUGE~\cite{lin-2004-rouge} metric for automatic evaluation called ROUGE\textsubscript{RAW}. The dataset was created at the Institute of Formal and Applied Linguistics from Charles University. It can be downloaded using scripts\footnote{\url{https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-2615}} provided by the authors of the paper. The analysis of text and abstract word counts within the SumeCzech dataset is detailed in Table \ref{tab:text_word_count_metrics}. This analysis provides insights into the composition of the dataset, highlighting the average, median, maximum, and minimum word counts across the different splits.
-
-\begin{table}[htbp]
-    \centering
-    \caption{Analysis of the SumeCzech text and abstract word count}
-    \label{tab:text_word_count_metrics}
-    \begin{tabular}{lcccc}
-        \toprule
-        \textbf{Metric} & {\textbf{Train}} & {\textbf{Dev}} & {\textbf{Test}} \\
-        \midrule
-        Text Average & 409 & 411 & 415 \\
-        Text Median & 325 & 326 & 329 \\
-        Text Maximum & 14 745 & 13 283 & 12 007 \\
-        Text Minimum & 93 & 99 & 99 \\
-        \midrule
-        Abstract Average & 38 & 38 & 39 \\
-        Abstract Median & 38 & 38 & 38 \\
-        Abstract Maximum & 470 & 253 & 220 \\
-        Abstract Minimum & 10 & 10 & 10 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+SumeCzech~\cite{straka-etal-2018-sumeczech} is a dataset comprised of one million Czech news articles sourced from five Czech news sites: České Noviny\footnote{\url{https://ceskenoviny.cz}}, Deník\footnote{\url{https://denik.cz}}, iDNES\footnote{\url{https://idnes.cz}}, Lidovky\footnote{\url{https://lidovky.cz}}, Novinky.cz\footnote{\url{https://novinky.cz}}. The dataset is structured in the JSON Lines format, with each document represented as a JSON object containing fields such as URL, headline, abstract, text, subdomain, section, and publication date. Data cleanup involved filtering out irrelevant entries and removing unnecessary information such as advertisements and links. Language recognition was performed to retain only Czech documents. Further cleaning steps involved dropping documents with empty headlines, short abstracts, or very short full texts. Duplicates were also removed based on headline, abstract, or text similarity. The dataset can be used for different summarization setups, including headline generation and multi-sentence abstract generation. The authors also propose a language-agnostic variant of the ROUGE~\cite{lin-2004-rouge} metric for automatic evaluation called ROUGE\textsubscript{RAW}. The dataset was created at the Institute of Formal and Applied Linguistics from Charles University. It can be downloaded using scripts\footnote{\url{https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-2615}} provided by the authors of the paper.
 
 \section{CNN/Daily Mail}\label{cnn/dm}
 The CNN/Daily Mail Dataset~\cite{HermannKGEKSB15} is a dataset comprised of over 300k English news articles from CNN and Daily Mail, where each article also contains the highlight of the article written by the article author. The dataset undergoes three versions: 1.0.0 focuses on question answering, using CNN and Daily Mail articles; 2.0.0 and 3.0.0 shift to summarization of long articles into one or two sentences. Version 3.0.0 is non-anonymized, revealing names of the entities that were hidden from the highlight for the purpose of question answering. The initial data collection was carried out by the authors of \cite{HermannKGEKSB15}. The summarization variant was produced by Ramesh Nallapati, Bowen Zhou, Cicero dos Santos, Bing Xiang of IBM Watson, and Caglar Gulcehre of Université de Montréal. The non-anonymized and publicly available version of the dataset, which was used in \cite{see-etal-2017-get} is provided by Abigail See of Stanford University, Peter J. Liu of Google Brain, and Christopher D. Manning of Stanford University. 
@@ -283,7 +262,7 @@ BOOKSUM~\cite{kryscinski2021booksum} is a dataset designed for the task of summa
 %pav: popis tabulky
 
 \section{Dataset Comparison}
-The SumeCzech dataset is the only dataset that aligns with the task of summarizing historical documents in the Czech language; therefore, it is the chosen dataset for training neural networks. Other datasets were explored for broader insights into summarization tasks and multilingual contexts. Table \ref{tab:datasets} summarizes key information about the datasets explored for fine-tuning summarization models, such as dataset type, size (amount of rows), language, and train/dev/test split ratio.
+The SumeCzech dataset is the only dataset that aligns with the task of summarizing historical documents in the Czech language; therefore, it is the chosen dataset for training neural networks. Other datasets were explored for broader insights into summarization tasks and multilingual contexts. Table \ref{tab:datasets} summarizes key information about the datasets explored for fine-tuning summarization models, such as dataset type, size (amount of rows), language, and train/dev/test split, represented as percentages.
 
 \begin{table}[htbp]
     \centering
@@ -428,7 +407,30 @@ $$
 ROUGE\textsubscript{RAW}~\cite{straka-etal-2018-sumeczech} is a language-agnostic variant of ROUGE proposed by the authors of SumeCzech. This variant maintains the core objectives of ROUGE, focusing on the comparison of n-grams and least common subsequences between the generated summaries and reference summaries. However, by discarding language-specific processing methods like stemmers, stop words, and synonym lists, ROUGE\textsubscript{RAW} becomes more adaptable to a variety of languages.
 
 \chapter{Design and Implementation} \label{char:implementation}
-In this chapter, we introduce the Hugging Face ecosystem\footnote{\url{https://huggingface.co/}} and its libraries, which were heavily used during the implementation. Then we will discuss the creation of an evaluation dataset on which we will evaluate our chosen methods. Afterwards, a visual demonstration of the text summary generation methods will be shown along with a brief description. Lastly, we will provide an in-depth discussion on the implementation of these methods. All implementations were conducted in the Python programming language. We also extensively utilized Jupyter notebooks~\cite{Kluyver2016jupyter} for development and testing.
+In this chapter, a visual demonstration that describes the system architecture of the text summary generation will be shown along with a brief description. Afterwards, we introduce the Hugging Face ecosystem\footnote{\url{https://huggingface.co/}} and its libraries, which were heavily used during the implementation. Then we will discuss the creation of an evaluation dataset on which we will evaluate our chosen methods. Lastly, we will provide an in-depth discussion on the implementation of these methods. All implementations were conducted in the Python programming language. We also extensively utilized Jupyter notebooks~\cite{Kluyver2016jupyter} for development and testing.
+
+\section{Design}
+The flowchart shown in Figure \ref{fig:design1} illustrates the process of text generation using a model that has undergone pre-training. Initially, the input text is preprocessed to clean and properly format the data. After preprocessing, the text is tokenized so that it can be processed in the following steps. The tokenized text is then passed to the pre-trained model, which may optionally be fine-tuned on a specific dataset to adapt it to a particular task or domain. The contents of the specific dataset determine the type of the text generation module. Finally, the model performs inference (see Section \ref{impl:hf:inference}) to generate text that is contextually relevant to the input.
+
+The following flowchart appearing in Figure \ref{fig:design2} illustrates the process of generating a summary using the TST method. The text generation module is abbreviated as TGM. The process begins with Czech text input, which is fed into an MT TGM. This MT TGM translates the Czech text into English. The English text is then processed by summarization TGM to create an English summary. The final step involves translating the English summary back into Czech using the final MT TGM, resulting in a Czech summary of the input text.
+\begin{figure}[ht]
+\centering
+\caption{Flowchart depicting the process of text generation using an LLM}
+\setlength{\fboxsep}{10pt}
+%\setlength{\fboxrule}{1pt}
+\fbox{\includegraphics[width=\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax,height=\dimexpr\textheight-2\fboxsep-2\fboxrule\relax,keepaspectratio,page=1]{diagram_1.pdf}}
+\label{fig:design1}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\caption{Flowchart depicting the process of generating a summary using TST}
+\setlength{\fboxsep}{10pt}
+%\setlength{\fboxrule}{1pt}
+\fbox{\includegraphics[width=\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax,height=\dimexpr\textheight-2\fboxsep-2\fboxrule\relax,keepaspectratio,page=1]{diagram_2.pdf}}
+\label{fig:design2}
+\end{figure}
+
 \section{Hugging Face} \label{hf}
 %todo show some examples of CODE
 Hugging Face\footnote{\url{https://huggingface.co/}} is a prominent platform in the machine learning community, providing an ecosystem for working with SOTA models and datasets. The platform hosts a vast collection of pre-trained models for various NLP tasks. One of the key contributions towards the platform's popularity is the Hugging Face Transformers~\cite{wolf-etal-2020-transformers} library, which provides a high-level abstraction for the usage of many large language models (LLM). It allows the users to perform inference, pre-training, and fine-tuning without a deep knowledge of the used architecture. 
@@ -448,7 +450,7 @@ The class provides an abstraction for the training loop, automating processes su
 For dealing with computationally heavy tasks, it also supports distributed training across multiple GPUs, CPU offloading and disk offloading. The Trainer also supports \term{Parameter-Efficient Fine-Tuning} (PEFT)~\cite{peft} methods which significantly reduces hardware requirements for model training by fine-tuning only a fraction of the model's parameters rather than all of the model's parameters.
 It also includes logging and monitoring functionalities, enabling users to track training metrics, such as training loss, validation loss, and evaluation metric scores on chosen metrics, throughout the training process.
 
-\subsubsection{Inference}
+\subsubsection{Inference} \label{impl:hf:inference}
 Inference is the process of using a trained model to make predictions or decisions.
 This process in text generation models, including those like mT5 and Mistral 7B, involves generating new text based on an input sequence of tokens. These models produce a probability distribution for each subsequent token, from which the next token is selected. The method of selection relies heavily on this probability distribution and the chosen text generation strategy for selecting subsequent tokens.
 
@@ -535,31 +537,32 @@ Through this methodology, we summarized 432 pages, effectively resulting in the 
 In our experience, we observed that while both models produced summaries of acceptable quality, Opus tended to create more succinct and stylistically appropriate summaries, closely aligning with the news reporter format. However, there were instances where summaries generated by Opus exhibited an excessive focus on a single topic. On the other hand, GPT-4 aimed to incorporate a greater level of detail within the five-sentence constraint but occasionally deviated from the specified stylistic prompt. 
 When the model-generated summary exhibited significant stylistic deviations or excessive focus on a single topic, we either modified or regenerated it until an acceptable version was achieved.
 
-\section{Design}
-The flowchart shown in Figure \ref{fig:design1} illustrates the process of text generation using a model that has undergone pre-training. Initially, the input text is preprocessed to clean and properly format the data. After preprocessing, the text is tokenized so that it can be processed in the following steps. The tokenized text is then passed to the pre-trained model, which may optionally be fine-tuned on a specific dataset to adapt it to a particular task or domain. The model type along with fine-tuning influences the capabilities of the resulting model. Finally, the model performs inference to generate text that is contextually relevant to the input.
-
-The following flowchart appearing in Figure \ref{fig:design2} illustrates the process of generating a summary using the TST method. The process begins with Czech text input, which is fed into an MT text generation module. This MT text generation module translates the Czech text into English. The English text is then processed by summarization text generation module to create an English summary. The final step involves translating the English summary back into Czech using the final MT text generation module, resulting in a Czech summary of the input text.
-\begin{figure}[ht]
-\centering
-\caption{Flowchart depicting the process of text generation using an LLM}
-\setlength{\fboxsep}{10pt}
-%\setlength{\fboxrule}{1pt}
-\fbox{\includegraphics[width=\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax,height=\dimexpr\textheight-2\fboxsep-2\fboxrule\relax,keepaspectratio,page=1]{diagram_1.pdf}}
-\label{fig:design1}
-\end{figure}
-
-\begin{figure}[ht]
-\centering
-\caption{Flowchart depicting the process of generating a summary using TST}
-\setlength{\fboxsep}{10pt}
-%\setlength{\fboxrule}{1pt}
-\fbox{\includegraphics[width=\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax,height=\dimexpr\textheight-2\fboxsep-2\fboxrule\relax,keepaspectratio,page=1]{diagram_2.pdf}}
-\label{fig:design2}
-\end{figure}
-
 \section{Summarization Models}
 \subsection{mT5} \label{impl:mt5}
-The decision to train the mT5 model was motivated by its multilingual capabilities and its proven track record in achieving success\footnote{\url{https://huggingface.co/csebuetnlp/mT5_multilingual_XLSum}}\footnote{\url{https://huggingface.co/tsmatz/mt5_summarize_japanese}} across various text summarization tasks in different languages. Despite the model being available in several sizes, constraints related to computational resources limited our efforts to the base variant, the only model size we managed to train successfully. Table \ref{tab:tokenized_text_abstract_metrics} presents a detailed analysis of the SumeCzech dataset after tokenization using the mT5 tokenizer. The table provides an analysis of token counts for the text and abstract across the training, development (validation), and test splits of the dataset, detailing average, median, maximum, and minimum values. In comparison with Table \ref{tab:text_word_count_metrics}, we can see that on average one word is approximately equivalent to two tokens.
+The decision to train the mT5 model was motivated by its multilingual capabilities and its proven track record in achieving success\footnote{\url{https://huggingface.co/csebuetnlp/mT5_multilingual_XLSum}}\footnote{\url{https://huggingface.co/tsmatz/mt5_summarize_japanese}} across various text summarization tasks in different languages. Despite the model being available in several sizes, constraints related to computational resources limited our efforts to the base variant, the only model size we managed to train successfully. 
+
+The analysis of text and abstract word counts within the SumeCzech dataset is detailed in Table \ref{tab:text_word_count_metrics}. This analysis highlights the average, median, maximum, and minimum word counts across the different splits. Table \ref{tab:tokenized_text_abstract_metrics} presents a detailed analysis of the SumeCzech dataset after tokenization using the mT5 tokenizer. The table provides an analysis of token counts for the text and abstract across the training, development (validation), and test splits of the dataset, detailing average, median, maximum, and minimum values. In comparison with Table \ref{tab:text_word_count_metrics}, we can see that on average one word is approximately equivalent to two tokens. The model maximum context length is 512 tokens, therefore truncation of the text in the dataset was unavoidable.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Analysis of the SumeCzech text and abstract word count}
+    \label{tab:text_word_count_metrics}
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Metric} & {\textbf{Train}} & {\textbf{Dev}} & {\textbf{Test}} \\
+        \midrule
+        Text Average & 409 & 411 & 415 \\
+        Text Median & 325 & 326 & 329 \\
+        Text Maximum & 14 745 & 13 283 & 12 007 \\
+        Text Minimum & 93 & 99 & 99 \\
+        \midrule
+        Abstract Average & 38 & 38 & 39 \\
+        Abstract Median & 38 & 38 & 38 \\
+        Abstract Maximum & 470 & 253 & 220 \\
+        Abstract Minimum & 10 & 10 & 10 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \begin{table}[htbp]
     \centering
@@ -594,7 +597,7 @@ The base variant of the mT5, which is a 580 million parameter model, was used fo
 
 The optimizer used was AdamW, the learning rate was set to 0.001 (as used by authors of mT5~\cite{xue-etal-2021-mt5} in their own fine-tuning experiments), weight decay was set to 0.01, and batch size was set to 8. Initial attempts at bigger batch sizes or longer sequences led to out of memory (OOM) errors. The training was conducted over 8 epochs, totalling 867500 steps, on a single NVIDIA A40 GPU. The training duration was 168 hours. Additionally, a linear scheduler was employed to adjust the learning rate over time.
 \paragraph{Further Training}
-Unlike Mistral 7B in Section \ref{impl:m7b}, we deemed further training on the dataset created for evaluation as fruitless due to the 512 token context length available on mT5 being far exceeded by the amount of tokens in each of the pages of the dataset.
+Unlike Mistral 7B in Section \ref{impl:m7b}, we deemed further training on the dataset created for evaluation as fruitless due to the 512 token maximum context length available on mT5 being far exceeded by the amount of tokens in each of the pages of the dataset.
 \subsection{Mistral 7B} \label{impl:m7b}
 The task of fine-tuning an LLM requires significant computational resources. The fine-tuning of the base variant of mT5 with only 580M parameters led to near full capacity usage of the 45 GB VRAM available in the NVIDIA A40 GPU. In the case of Mistral 7B, a normal fine-tuning would be impossible on the given GPU. To train such a large model, we had to either reserve more GPUs or use various optimizations. Due to time constraints that came with reserving more GPUs from MetaCentrum\footnote{\url{https://metavo.metacentrum.cz/}} facilities, we opted to use the latter option.
 \subsubsection{Optimization}
@@ -957,6 +960,7 @@ Additionally, the quality of text summarization could have been enhanced by avoi
 \item[mT5-SC] mT5 model trained on the SumeCzech dataset
 \item[TST] Translate-Summarize-Translate method
 \item[MT] Machine translation
+\item[TGM] Text generation module
     
 \end{description}
 % _____________________________________________________________________________
