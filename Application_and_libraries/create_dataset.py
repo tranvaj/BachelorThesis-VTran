@@ -35,8 +35,8 @@ def process_folder(folder_path, text_prefix, summary_prefix, max_dirs=-1):
 
     """
     dirs = os.listdir(folder_path)
-    data = {}
-    data2 = []
+    data_poc = {}
+    data_poc_p = []
     dir_count = 0
     for dir in dirs:
         if os.path.isdir(folder_path):
@@ -91,10 +91,10 @@ def process_folder(folder_path, text_prefix, summary_prefix, max_dirs=-1):
                     summary_total = file.read()
 
             #data.append({dir:{"pages": dataset_pair_list, "summary_total": summary_total}})
-            data[dir] = {"pages": dataset_pair_list, "summary_total": summary_total}
+            data_poc[dir] = {"pages": dataset_pair_list, "summary_total": summary_total}
             #text = join_files(txt_files_path)
-            data2.extend(dataset_pair_list)
-    return data, data2
+            data_poc_p.extend(dataset_pair_list)
+    return data_poc, data_poc_p
             
             
 
@@ -109,12 +109,24 @@ def join_files(files):
             joined_text += file.read()
     return joined_text
 
-#summary_prefix: prefix of the summary files
-#text_prefix: prefix of the text files
-#folder_suffix: suffix of the folder names
 def create_dataset(dir_location, text_prefix="posel-od-cerchova-", folder_suffix="-ukazka", summary_prefix="summary-"):
-    dataset = {}
-    dataset2 = []
+    """
+    Create a POC dataset and POC_P dataset from the specified directory location.
+
+    Args:
+        dir_location (str): The directory location where the dataset is stored.
+        text_prefix (str, optional): The prefix for the text files. Defaults to "posel-od-cerchova-".
+        folder_suffix (str, optional): The suffix for the folders. Defaults to "-ukazka".
+        summary_prefix (str, optional): The prefix for the summary files. Defaults to "summary-".
+
+    Returns:
+        tuple: A tuple containing two elements:
+            - dataset_poc (dict): POC dataset - Dictionary containing journals. These contain issues, which contain pages and the summary total.
+            - dataset_poc_p (list): POC_P dataset - A list containing only pages.
+    """
+    
+    dataset_poc = {}
+    dataset_poc_p = []
     dirs = os.listdir(dir_location)
     for dir in dirs:
         dir: str
@@ -123,19 +135,19 @@ def create_dataset(dir_location, text_prefix="posel-od-cerchova-", folder_suffix
                 continue
             print(dir)
             el, data_2 = process_folder(dir_location + "/" + dir, text_prefix, summary_prefix)
-            dataset[dir] = el
-            dataset2.extend(data_2)
-    return dataset, dataset2
+            dataset_poc[dir] = el
+            dataset_poc_p.extend(data_2)
+    return dataset_poc, dataset_poc_p
 
 def main():
     dataset, dataset2 = create_dataset(TEXT_LOC, TEXT_PREFIX, FOLDER_SUFFIX, SUMMARY_PREFIX)
     print(len(dataset2))
-    dataset_json = json.dumps(dataset, ensure_ascii=False)
-    dataset2_json = json.dumps(dataset2, ensure_ascii=False)
+    dataset_poc_json = json.dumps(dataset, ensure_ascii=False)
+    dataset_poc_p_json = json.dumps(dataset2, ensure_ascii=False)
     #export to json
     with open(DATASET_POC, 'w', encoding="utf-8") as file:
-        file.write(dataset_json)
+        file.write(dataset_poc_json)
 
     with open(DATASET_POC_P, 'w', encoding="utf-8") as file:
-        file.write(dataset2_json)
+        file.write(dataset_poc_p_json)
 main()
