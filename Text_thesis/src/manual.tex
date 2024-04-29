@@ -33,6 +33,7 @@
 \usepackage{csquotes}
 \usepackage{caption}
 \usepackage{tabularx}
+\usepackage{forest}
 \hyphenation{vy-tvá-ře-ním}
 \DeclareTextFontCommand{\mytexttt}{\ttfamily\hyphenchar\font=45\relax}
 
@@ -856,9 +857,9 @@ During the generation of issue summaries, M7B-POC encountered a specific problem
         \cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10}
         & {P} & {R} & {F} & {P} & {R} & {F} & {P} & {R} & {F} \\
         \midrule
-        M7B-POC* & 17.5 & 16.6 & 16.6 & \textbf{2.6} & 2.4 & \textbf{2.4} & 12.4 & 11.8 & \textbf{11.8} \\
-        TST & 13.8 & \textbf{24.7} & \textbf{17.2} & 1.7 & \textbf{3.1} & 2.1 & 8.9 & \textbf{16.2} & 11.2 \\
-        mT5-SC & \textbf{17.9} & 5.8 & 8.4 & 1.0 & 0.3 & 0.4 & \textbf{13.8} & 4.4 & 6.4 \\
+        M7B-POC* & \textbf{19.3} & 17.6 & \textbf{18.0} & \textbf{3.2} & 2.8 & \textbf{2.9} & 13.7 & 12.4 & \textbf{12.8} \\
+        TST & 14.0 & \textbf{24.8} & 17.5 & 1.7 & \textbf{3.1} & 2.1 & 9.1 & \textbf{16.3} & 11.4 \\
+        mT5-SC & 18.2 & 5.9 & 8.6 & 1.0 & 0.3 & 0.4 & \textbf{14.0} & 4.5 & 6.5 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -972,6 +973,7 @@ Additionally, the quality of text summarization could have been enhanced by avoi
 % _____________________________________________________________________________
 %
 
+
 % _____________________________________________________________________________
 %
 %
@@ -979,7 +981,6 @@ Additionally, the quality of text summarization could have been enhanced by avoi
 %
 % _____________________________________________________________________________
 %
-
 
 % _____________________________________________________________________________
 %
