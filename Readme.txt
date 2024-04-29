@@ -3,6 +3,7 @@ Automatic Creation of Summaries of Historical Documents
 Structure:
     Application_and_libraries 
     - Contains .py and .ipynb files for training, evaluation and text summarization of mT5, Mistral 7B and TST. Also contains M7B-SC and M7B-POC QLORAs (3rd checkpoint).
+    - Contains .py script for dataset generation using the provided Posel od Čerchova journals in "\Input_data"
     - Contains singular "config.cfg" file for setting various constants and paths.
     - We used the following Jupyter Notebook image: cschranz/gpu-jupyter:v1.6_cuda-12.0_ubuntu-22.04 from https://github.com/iot-salzburg/gpu-jupyter 
     - If you are unfamiliar with .ipynb files, please check the Jupyter Notebook documentation https://docs.jupyter.org/en/latest/

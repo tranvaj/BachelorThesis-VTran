@@ -6,15 +6,14 @@ import configparser
 config = configparser.ConfigParser()
 config.read('config.cfg')
 
-DATASET_DIR = config['SumeCzech']['dataset_dir'] #"/storage/plzen1/home/nuva/sumeczech_dataset"
-MODEL_CHECKPOINT = config['mT5']['summarizer'] #"tranv/mt5-base-finetuned-sumeczech"
-TEST_FILE = config['SumeCzech']['test'] #"/storage/plzen1/home/nuva/sumeczech_dataset/sumeczech-1.0-test.jsonl"
+DATASET_DIR = config['SumeCzech']['dataset_dir'] 
+MODEL_CHECKPOINT = config['mT5']['summarizer'] 
+TEST_FILE = config['SumeCzech']['test'] 
 
 max_input_length = 512
 max_target_length = 512
 print("Evaluating...")
 
-#data_files = {"test":"/storage/plzen1/home/nuva/sumeczech_dataset/sumeczech-1.0-test.jsonl"}
 data_files = {"test":f"{DATASET_DIR}/{TEST_FILE}"}
 sc_set = load_dataset("json", data_files=data_files)
 
@@ -32,10 +31,11 @@ for article in articles_text:
     truncated_articles.append(truncated_article)
 
 
-summary = summarizer_t5(truncated_articles, min_length=0, max_length=1024) # change min_ and max_length for different output
+summary = summarizer_t5(truncated_articles, min_length=0, max_length=1024)
 
 summary_texts = [item['summary_text'] for item in summary]
 
+#write the summaries to a file
 with open("summary.txt", "w", encoding="utf-8") as file:
     for summary_text in summary_texts:
         file.write(summary_text + "\n")
